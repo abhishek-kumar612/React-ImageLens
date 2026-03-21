@@ -4,6 +4,9 @@ A modern, high-performance image viewer built with **React + TypeScript**, desig
 
 ---
 
+![App Preview](preview.png)
+
+---
 
 ## ✨ Features
 
