@@ -10,7 +10,7 @@ export function SkeletonLoader() {
     >
       <div className="relative w-full max-w-lg aspect-video mx-auto">
         {/* Skeleton shape */}
-        <div className="w-full h-full rounded-2xl bg-white/[0.04] overflow-hidden">
+        <div className="w-full h-full rounded-2xl bg-slate-200 dark:bg-white/[0.04] overflow-hidden">
           <motion.div
             animate={{
               backgroundPosition: ['200% 0%', '-200% 0%'],
@@ -40,7 +40,7 @@ export function SkeletonLoader() {
             <motion.p
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-sm text-slate-400"
+              className="text-sm text-slate-500 dark:text-slate-400"
             >
               Loading image...
             </motion.p>

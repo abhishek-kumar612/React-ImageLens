@@ -3,24 +3,28 @@ import { DropZone } from '@/components/DropZone';
 import { ImagePreview } from '@/components/ImagePreview';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { useImageLoader } from '@/hooks/useImageLoader';
+import { ThemeProvider } from '@/context/ThemeContext';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function App() {
   const { imageInfo, isLoading, error, loadImage, clearImage } = useImageLoader();
 
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-hidden">
+    <ThemeProvider>
+      <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors duration-500">
+        <ThemeToggle />
       {/* Animated gradient background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-600/8 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/6 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/4 rounded-full blur-[150px]" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-600/5 dark:bg-violet-600/8 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/4 dark:bg-purple-600/6 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/2 dark:bg-indigo-600/4 rounded-full blur-[150px]" />
         
         {/* Grid pattern overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03] invert dark:invert-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }}
         />
@@ -73,7 +77,7 @@ export function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-5xl sm:text-6xl font-bold text-white tracking-tight"
+                className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white tracking-tight"
               >
                 Image
                 <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -85,7 +89,7 @@ export function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="mt-3 text-sm text-slate-400 max-w-sm mx-auto"
+                className="mt-3 text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto"
               >
                 Drop an image to preview, zoom, and inspect with precision
               </motion.p>
@@ -98,7 +102,7 @@ export function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-slate-600"
+              className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-slate-400 dark:text-slate-600"
             >
               {[
                 { icon: '🔍', text: 'Zoom at cursor' },
@@ -114,6 +118,7 @@ export function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

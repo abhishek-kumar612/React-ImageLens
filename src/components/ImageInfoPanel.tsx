@@ -36,11 +36,11 @@ export function ImageInfoPanel({ imageInfo }: ImageInfoPanelProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 + i * 0.1 }}
           className="flex items-center gap-2 px-3 py-1.5 rounded-full 
-                     bg-white/[0.06] backdrop-blur-md border border-white/[0.08]
-                     text-xs text-slate-300"
+                     bg-slate-200/50 dark:bg-white/[0.06] backdrop-blur-md border border-slate-300 dark:border-white/[0.08]
+                     text-xs text-slate-600 dark:text-slate-300"
         >
-          <span className="text-slate-500">{item.label}</span>
-          <span className="font-medium text-slate-200">{item.value}</span>
+          <span className="text-slate-400 dark:text-slate-500">{item.label}</span>
+          <span className="font-medium text-slate-800 dark:text-slate-200">{item.value}</span>
         </motion.div>
       ))}
     </motion.div>

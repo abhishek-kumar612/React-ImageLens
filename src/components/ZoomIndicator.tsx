@@ -33,10 +33,10 @@ export function ZoomIndicator({ scale }: ZoomIndicatorProps) {
           exit={{ opacity: 0, scale: 0.8, y: 10 }}
           transition={{ duration: 0.2 }}
           className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50
-                     px-5 py-2.5 rounded-2xl bg-black/60 backdrop-blur-xl 
-                     border border-white/[0.1] shadow-2xl"
+                     px-5 py-2.5 rounded-2xl bg-white/80 dark:bg-black/60 backdrop-blur-xl 
+                     border border-slate-200 dark:border-white/[0.1] shadow-2xl shadow-black/5"
         >
-          <span className="text-lg font-semibold text-white tabular-nums">
+          <span className="text-lg font-semibold text-slate-900 dark:text-white tabular-nums">
             {percentage}%
           </span>
         </motion.div>

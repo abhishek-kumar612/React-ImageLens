@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -30,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #020617;
+  @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-500;
 }
 
 /* Prevent mobile zoom on double tap */

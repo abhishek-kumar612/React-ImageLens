@@ -82,7 +82,7 @@ export function DropZone({ onFileSelect, error }: DropZoneProps) {
         whileHover={{ scale: 1.01, borderColor: 'rgba(139, 92, 246, 0.5)' }}
         transition={{ duration: 0.2 }}
         className="relative cursor-pointer rounded-3xl border-2 border-dashed p-12 md:p-16 
-                   backdrop-blur-xl bg-white/[0.06] overflow-hidden group"
+                   backdrop-blur-xl bg-white/40 dark:bg-white/[0.06] overflow-hidden group"
       >
         {/* Animated gradient background on drag */}
         <AnimatePresence>
@@ -166,10 +166,10 @@ export function DropZone({ onFileSelect, error }: DropZoneProps) {
                   exit={{ opacity: 0, y: -5 }}
                   className="space-y-2"
                 >
-                  <p className="text-lg font-medium text-slate-200">
+                  <p className="text-lg font-medium text-slate-700 dark:text-slate-200">
                     Drag & drop an image here
                   </p>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     or{' '}
                     <span className="text-violet-400 font-medium hover:text-violet-300 transition-colors">
                       browse files

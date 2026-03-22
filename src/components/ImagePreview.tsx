@@ -42,7 +42,7 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-40 flex flex-col bg-slate-950/95 backdrop-blur-sm"
+      className="fixed inset-0 z-40 flex flex-col bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-sm transition-colors duration-500"
     >
       {/* Header */}
       <motion.div
@@ -50,7 +50,7 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.3 }}
         className="relative z-50 flex items-center justify-between px-4 sm:px-6 py-3 
-                   bg-black/30 backdrop-blur-xl border-b border-white/[0.05]"
+                   bg-white/40 dark:bg-black/30 backdrop-blur-xl border-b border-slate-200 dark:border-white/[0.05]"
       >
         <div className="flex items-center gap-3 min-w-0">
           <motion.button
@@ -58,8 +58,9 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
             className="w-9 h-9 cursor-pointer flex items-center justify-center rounded-xl
-                       bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.08]
-                       text-slate-400 hover:text-white transition-colors shrink-0"
+                       bg-slate-200/50 dark:bg-white/[0.06] hover:bg-slate-300/50 dark:hover:bg-white/[0.12] 
+                       border border-slate-300 dark:border-white/[0.08]
+                       text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors shrink-0"
             aria-label="Close preview"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
@@ -68,7 +69,7 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
           </motion.button>
 
           <div className="min-w-0">
-            <p className="text-sm font-medium text-slate-200 truncate max-w-[200px] sm:max-w-md">
+            <p className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate max-w-[200px] sm:max-w-md">
               {imageInfo.name}
             </p>
           </div>
@@ -126,7 +127,7 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="relative z-50 flex items-center justify-center px-4 py-3
-                   bg-black/30 backdrop-blur-xl border-t border-white/[0.05]"
+                   bg-white/40 dark:bg-black/30 backdrop-blur-xl border-t border-slate-200 dark:border-white/[0.05]"
       >
         <ZoomControls
           scale={zoom.scale}
@@ -138,16 +139,16 @@ export function ImagePreview({ imageInfo, onClose }: ImagePreviewProps) {
         {/* Keyboard shortcut hints */}
         <div className="hidden sm:flex items-center gap-3 ml-6 text-[10px] text-slate-600">
           <span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-slate-500 font-mono">+</kbd>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-slate-500 font-mono ml-0.5">−</kbd>
+            <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.06] text-slate-500 font-mono">+</kbd>
+            <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.06] text-slate-500 font-mono ml-0.5">−</kbd>
             {' '}zoom
           </span>
           <span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-slate-500 font-mono">0</kbd>
+            <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.06] text-slate-500 font-mono">0</kbd>
             {' '}reset
           </span>
           <span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.06] text-slate-500 font-mono">Esc</kbd>
+            <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-white/[0.04] border border-slate-300 dark:border-white/[0.06] text-slate-500 font-mono">Esc</kbd>
             {' '}close
           </span>
         </div>
