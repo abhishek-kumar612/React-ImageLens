@@ -21,6 +21,7 @@ A modern, high-performance image viewer built with **React + TypeScript**, desig
   - ✅ PNG
   - ✅ WebP
 - Built-in file validation for type safety
+- **Direct URL Support**: Paste an image link to inspect it instantly without download.
 
 ---
 
@@ -40,6 +41,14 @@ A modern, high-performance image viewer built with **React + TypeScript**, desig
   - `0` → Reset zoom
   - `Esc` → Exit preview
 - On-screen zoom indicator with auto fade-out
+
+---
+
+### 🌓 Dark Mode
+- **Smooth Theme Toggling**: Integrated sun/moon toggle with Framer Motion animations
+- **Local Persistence**: Automatically saves your theme preference
+- **System Detection**: Respects system-level dark mode settings
+- **Refined Aesthetics**: Tailored color palettes for both light & dark environments
 
 ---
 

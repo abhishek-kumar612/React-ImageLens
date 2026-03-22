@@ -41,13 +41,61 @@ export function useImageLoader() {
     img.src = url;
   }, []);
 
+  const loadFromUrl = useCallback(async (url: string) => {
+    // Basic URL validation
+    try {
+      new URL(url);
+    } catch {
+      setError('Please enter a valid URL.');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    const img = new Image();
+    
+    // Attempt to infer name and type from URL
+    let fileName = 'external-image';
+    let type = 'image/unknown';
+    
+    try {
+      const pathname = new URL(url).pathname;
+      fileName = pathname.split('/').pop() || 'external-image';
+      const extension = fileName.split('.').pop()?.toLowerCase();
+      if (extension) type = `image/${extension}`;
+    } catch {
+      // Fallback if URL parsing fails for some reason
+    }
+
+    img.onload = () => {
+      setImageInfo({
+        name: fileName,
+        size: 0,
+        type: type,
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+        url,
+      });
+      setIsLoading(false);
+    };
+
+    img.onerror = () => {
+      setError('Failed to load image. The URL may be invalid or blocked by CORS.');
+      setIsLoading(false);
+    };
+
+    img.crossOrigin = 'anonymous';
+    img.src = url;
+  }, []);
+
   const clearImage = useCallback(() => {
-    if (imageInfo) {
+    if (imageInfo?.file) {
       URL.revokeObjectURL(imageInfo.url);
     }
     setImageInfo(null);
     setError(null);
   }, [imageInfo]);
 
-  return { imageInfo, isLoading, error, loadImage, clearImage };
+  return { imageInfo, isLoading, error, loadImage, loadFromUrl, clearImage };
 }

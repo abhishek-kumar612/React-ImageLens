@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function App() {
-  const { imageInfo, isLoading, error, loadImage, clearImage } = useImageLoader();
+  const { imageInfo, isLoading, error, loadImage, loadFromUrl, clearImage } = useImageLoader();
 
   return (
     <ThemeProvider>
@@ -95,7 +95,11 @@ export function App() {
               </motion.p>
             </motion.div>
 
-            <DropZone onFileSelect={loadImage} error={error} />
+            <DropZone 
+              onFileSelect={loadImage} 
+              onUrlSelect={loadFromUrl}
+              error={error} 
+            />
 
             {/* Feature hints */}
             <motion.div

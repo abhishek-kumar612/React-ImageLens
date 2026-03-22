@@ -5,7 +5,7 @@ export interface ImageInfo {
   width: number;
   height: number;
   url: string;
-  file: File;
+  file?: File;
 }
 
 export interface ZoomState {

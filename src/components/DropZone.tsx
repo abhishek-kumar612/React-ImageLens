@@ -4,11 +4,13 @@ import { ACCEPTED_EXTENSIONS } from '@/types';
 
 interface DropZoneProps {
   onFileSelect: (file: File) => void;
+  onUrlSelect: (url: string) => void;
   error: string | null;
 }
 
-export function DropZone({ onFileSelect, error }: DropZoneProps) {
+export function DropZone({ onFileSelect, onUrlSelect, error }: DropZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
+  const [urlInput, setUrlInput] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounter = useRef(0);
 
@@ -61,6 +63,12 @@ export function DropZone({ onFileSelect, error }: DropZoneProps) {
   const handleClick = useCallback(() => {
     fileInputRef.current?.click();
   }, []);
+
+  const handleUrlSubmit = useCallback(() => {
+    if (urlInput.trim()) {
+      onUrlSelect(urlInput.trim());
+    }
+  }, [urlInput, onUrlSelect]);
 
   return (
     <motion.div
@@ -192,6 +200,45 @@ export function DropZone({ onFileSelect, error }: DropZoneProps) {
           onChange={handleFileChange}
           className="hidden"
         />
+      </motion.div>
+
+      {/* URL Input */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mt-8 flex flex-col items-center gap-4 w-full"
+      >
+        <div className="flex items-center gap-3 text-slate-400 dark:text-slate-600 text-[10px] uppercase tracking-[0.2em] font-medium">
+          <div className="h-px w-10 bg-slate-200 dark:bg-slate-800" />
+          <span>Or paste a URL</span>
+          <div className="h-px w-10 bg-slate-200 dark:bg-slate-800" />
+        </div>
+        
+        <div className="flex w-full gap-2 max-w-lg">
+          <input
+            type="text"
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleUrlSubmit()}
+            placeholder="https://images.unsplash.com/photo-..."
+            className="flex-1 px-4 py-3 rounded-2xl bg-white/40 dark:bg-white/[0.04] 
+                       backdrop-blur-md border border-slate-200 dark:border-white/[0.08]
+                       text-sm text-slate-800 dark:text-slate-200 
+                       focus:outline-none focus:ring-2 focus:ring-violet-500/20
+                       placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-all"
+          />
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleUrlSubmit}
+            className="px-6 py-3 rounded-2xl bg-violet-600 hover:bg-violet-500 
+                       text-white text-sm font-semibold shadow-lg shadow-violet-600/20 
+                       transition-colors cursor-pointer"
+          >
+            Load
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Error message */}
